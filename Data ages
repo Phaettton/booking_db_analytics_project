@@ -1,0 +1,22 @@
+SELECT 
+  u.age_group,
+  ROUND((
+    r.score_overall +
+    r.score_cleanliness +
+    r.score_comfort +
+    r.score_facilities +
+    r.score_location +
+    r.score_staff +
+    r.score_value_for_money
+  ) / 7.0, 2) AS score_average
+FROM reviews r
+JOIN users u ON r.user_id = u.user_id
+GROUP BY u.age_group
+ORDER BY 
+  CASE u.age_group
+    WHEN '18-24' THEN 1
+    WHEN '25-34' THEN 2
+    WHEN '35-44' THEN 3
+    WHEN '45-54' THEN 4
+    WHEN '55+' THEN 5
+  END;
