@@ -1,0 +1,39 @@
+SELECT 
+  u.country ,
+  ROUND ((
+  score_cleanliness +
+  score_comfort +
+  score_facilities +
+  score_location +
+  score_overall +
+  score_staff +
+  score_value_for_money) / 7.0,2) AS score_avarage
+  FROM reviews r JOIN users u ON r.user_id = u.user_id
+  GROUP BY u.country
+    ORDER BY 
+      CASE 
+      WHEN "Argentina" THEN 1
+      WHEN "Australia" THEN 2
+      WHEN "Brazil" THEN 3
+      WHEN "Canada" THEN 4
+      WHEN "China" THEN 5
+      WHEN "Egypt" THEN 6
+      WHEN "France" THEN 7
+      WHEN "Germany" THEN 8
+      WHEN "India" THEN 9
+      WHEN "Italy" THEN 10
+      WHEN "Japan" THEN 11
+      WHEN "Mexico" THEN 12
+      WHEN "Netherlands" THEN 13
+      WHEN "Nigeria" THEN 14
+      WHEN "Russia" THEN 15
+      WHEN "Singapore" THEN 16
+      WHEN "South Africa" THEN 17
+      WHEN "South Korea" THEN 18
+      WHEN "Spain" THEN 19
+      WHEN "Thailand" THEN 20
+      WHEN "Turkey" THEN 21
+      WHEN "United Arab Emirates" THEN 22
+      WHEN "United Kingdom" THEN 23
+      WHEN "United States" THEN 24
+    END
